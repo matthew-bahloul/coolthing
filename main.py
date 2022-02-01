@@ -3,7 +3,7 @@ from re import T
 from po_utils.base_objects import Page
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
-from selenium.webdriver.chrome import service,
+from selenium.webdriver.chrome import service
 import sys
 import time
 import argparse
@@ -40,6 +40,7 @@ def main():
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('--disable-dev-shm-usage')
     s = service.Service(ChromeDriverManager().install())
