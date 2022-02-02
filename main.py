@@ -8,6 +8,8 @@ import sys
 import time
 import argparse
 from random import choice as rand_choice
+from random import randint
+from datetime import date, datetime
 
 
 def _log_into_twitter_with_credentials(page: Page, username: str, password: str) -> bool:
@@ -23,7 +25,10 @@ def _log_into_twitter_with_credentials(page: Page, username: str, password: str)
 
 def _write_tweet(page: Page, message):
     time.sleep(2)
-    page.send_text_to_element(('xpath', '//*[@data-testid="tweetTextarea_0"]/div/div/div'), message)
+    start = '?' * randint(1, 10)
+    end = '?' * randint(1, 10)
+    updated_message = f' {start} {message} {end}'
+    page.send_text_to_element(('xpath', '//*[@data-testid="tweetTextarea_0"]/div/div/div'), updated_message)
     page.click_element(('xpath', '//*[@data-testid="tweetButtonInline"]'))
 
 
@@ -39,7 +44,7 @@ def main():
     args = _parse_args()
 
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('--disable-dev-shm-usage')
