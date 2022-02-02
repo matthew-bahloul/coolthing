@@ -44,7 +44,7 @@ def main():
     chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('--disable-dev-shm-usage')
     s = service.Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=s, chrome_options=chrome_options)
+    driver = webdriver.Chrome(service=s,options=chrome_options)
 
     pg = Page(driver)
 
